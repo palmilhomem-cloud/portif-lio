@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedro Augusto | Portfólio & Futuro Desenvolvedor de IA</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0b0f19',
+                            card: '#111827',
+                            border: '#1f293d',
+                            cyan: '#06b6d4',
+                            purple: '#8b5cf6',
+                            pink: '#ec4899',
+                            emerald: '#10b981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-glow': 'pulseGlow 3s infinite alternate',
+                        'float': 'float 4s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px rgba(6, 182, 212, 0.2)' },
+                            '100%': { boxShadow: '0 0 30px rgba(139, 92, 246, 0.5)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1f293d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-gray-100 transition-colors duration-300 dark:bg-[#0b0f19] dark:text-gray-100 light:bg-slate-50 light:text-slate-900 min-h-screen flex flex-col justify-between selection:bg-brand-purple selection:text-white">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 glass-card border-b border-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-cyan to-brand-purple flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-brand-cyan/20 group-hover:scale-105 transition-transform">
+                    PA
+                </div>
+                <div>
+                    <span class="font-bold text-lg tracking-tight block">Pedro Augusto</span>
+                    <span class="text-xs text-brand-cyan font-mono block -mt-1">&lt;Dev.IA /&gt;</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#about" class="hover:text-brand-cyan transition-colors">Sobre Mim</a>
+                <a href="#projects" class="hover:text-brand-cyan transition-colors">Projetos Práticos</a>
+                <a href="#roadmap" class="hover:text-brand-cyan transition-colors">Trilha & Futuro</a>
+                <a href="#contact" class="hover:text-brand-cyan transition-colors">Contato</a>
+            </nav>
+
+            <!-- Actions (Theme Toggle + Mobile Menu Button) -->
+            <div class="flex items-center space-x-4">
+                <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl bg-gray-800/80 hover:bg-gray-700 text-gray-300 hover:text-white transition-all border border-gray-700/50" title="Alternar Tema">
+                    <i id="themeIcon" class="fas sm:fa-moon text-brand-purple"></i>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl bg-gray-800/80 hover:bg-gray-700 text-gray-300">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden glass-card border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#about" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium hover:text-brand-cyan">Sobre Mim</a>
+            <a href="#projects" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium hover:text-brand-cyan">Projetos Práticos</a>
+            <a href="#roadmap" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium hover:text-brand-cyan">Trilha & Futuro</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium hover:text-brand-cyan">Contato</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow">
+
+        <!-- HERO SECTION -->
+        <section class="relative py-20 lg:py-32 overflow-hidden">
+            <!-- Background Glows -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-purple/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute top-1/3 right-10 w-80 h-80 bg-brand-cyan/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left Hero Intro -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-purple/10 border border-brand-purple/30 text-brand-purple text-xs sm:text-sm font-semibold">
+                            <i class="fas fa-microchip text-brand-cyan animate-pulse"></i>
+                            <span>Futuro Desenvolvedor de Inteligência Artificial</span>
+                        </div>
+
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                            Transformando Curiosidade em <span class="gradient-text">Código & Tecnologia</span>.
+                        </h1>
+
+                        <p class="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-normal">
+                            Olá! Sou o <strong class="text-white">Pedro Augusto</strong>, tenho 17 anos e sou estudante do Ensino Médio. Estou me especializando em TI com foco em desenvolvimento web, redes e o objetivo final de dominar a área de **IA**.
+                        </p>
+
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                            <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-purple hover:opacity-90 transition-all font-semibold text-white shadow-lg shadow-brand-cyan/20 flex items-center gap-2">
+                                <i class="fas fa-laptop-code"></i> Ver Meus Projetos
+                            </a>
+                            <a href="#contact" class="px-6 py-3.5 rounded-xl bg-gray-800/80 hover:bg-gray-700 border border-gray-700 transition-all font-semibold text-gray-200 flex items-center gap-2">
+                                <i class="far fa-paper-plane"></i> Entrar em Contato
+                            </a>
+                        </div>
+
+                        <!-- Quick Badges / Stats -->
+                        <div class="pt-8 grid grid-cols-3 gap-4 border-t border-gray-800/80 max-w-md mx-auto lg:mx-0">
+                            <div>
+                                <p class="text-2xl sm:text-3xl font-extrabold text-brand-cyan">17</p>
+                                <p class="text-xs text-gray-400 font-medium">Anos de Idade</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl sm:text-3xl font-extrabold text-brand-purple">2+</p>
+                                <p class="text-xs text-gray-400 font-medium">Projetos Práticos</p>
+                            </div>
+                            <div>
+                                <p class="text-2xl sm:text-3xl font-extrabold text-brand-pink">100%</p>
+                                <p class="text-xs text-gray-400 font-medium">Foco em Evoluir</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Profile Graphic / Decorative Card -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <!-- Card Background Glow -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-brand-cyan via-brand-purple to-brand-pink rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+
+                            <div class="relative glass-card p-6 sm:p-8 rounded-2xl border border-gray-700/50 space-y-6">
+                                <!-- Profile Avatar / Header -->
+                                <div class="flex items-center gap-4">
+                                    <div class="w-16 h-16 rounded-2xl bg-slate-800 border-2 border-brand-cyan p-1 flex items-center justify-center text-brand-cyan text-3xl font-bold">
+                                        <i class="fas fa-user-astronaut animate-float"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-xl font-bold">Pedro Augusto</h2>
+                                        <p class="text-xs text-gray-400">Estudante de Informática & Redes</p>
+                                        <span class="inline-flex items-center gap-1 text-[10px] text-brand-emerald font-semibold mt-1">
+                                            <span class="w-2 h-2 rounded-full bg-brand-emerald animate-ping"></span>
+                                            Em Aprendizado Ativo
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Terminal Simulation Widget -->
+                                <div class="bg-slate-950 rounded-xl p-4 font-mono text-xs text-gray-300 border border-gray-800/80 space-y-2">
+                                    <div class="flex items-center gap-1.5 pb-2 border-b border-gray-800">
+                                        <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                                        <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                                        <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+                                        <span class="text-[10px] text-gray-500 ml-2">bash - dev-profile</span>
+                                    </div>
+                                    <p class="text-brand-cyan">$ user.getPosition()</p>
+                                    <p class="text-gray-400">&gt; "Estudante do Ensino Médio & TI"</p>
+                                    <p class="text-brand-purple">$ user.getGoal()</p>
+                                    <p class="text-gray-400">&gt; "Engenheiro de IA / Data Scientist"</p>
+                                    <p class="text-brand-emerald">$ user.getCurrentStack()</p>
+                                    <p class="text-gray-400">&gt; ["HTML", "CSS", "PHP", "Packet Tracer"]</p>
+                                </div>
+
+                                <div class="p-3 rounded-xl bg-gray-800/40 border border-gray-700/40 text-xs text-gray-300 flex items-center gap-3">
+                                    <i class="fas fa-graduation-cap text-brand-purple text-lg"></i>
+                                    <span>Focado na transição de fundamentos de TI para Inteligência Artificial.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT ME SECTION -->
+        <section id="about" class="py-20 bg-slate-900/50 border-y border-gray-800/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                    <h2 class="text-xs uppercase font-mono tracking-widest text-brand-cyan font-bold">Quem eu sou</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold">Sobre Minha Jornada</h3>
+                    <div class="w-16 h-1 bg-gradient-to-r from-brand-cyan to-brand-purple mx-auto rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Card 1 -->
+                    <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-brand-cyan/40 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2">Ensino Médio & TI</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Mesmo sem experiência prévia no mercado de trabalho, comecei cedo no mundo da tecnologia através de um curso de especialização para construir uma base sólida.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-brand-purple/40 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-brand-purple/10 border border-brand-purple/30 text-brand-purple flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2">Aspirante em IA</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Meu maior objetivo é me tornar um **Desenvolvedor de Inteligência Artificial**. Tenho fascínio por automação, modelos preditivos e algoritmos inteligentes.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="glass-card p-6 rounded-2xl border border-gray-800 hover:border-brand-pink/40 transition-all group">
+                        <div class="w-12 h-12 rounded-xl bg-brand-pink/10 border border-brand-pink/30 text-brand-pink flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2">Prática & Projetos</h4>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Acredito que a melhor forma de aprender é construindo. Já programei um portal completo para Palworld e simulei redes corporativas complexas.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION -->
+        <section id="projects" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <h2 class="text-xs uppercase font-mono tracking-widest text-brand-purple font-bold">Portfólio Prático</h2>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold mt-1">Meus Projetos Técnicos</h3>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-md mt-4 md:mt-0">
+                        Projetos práticos desenvolvidos durante meus estudos de Desenvolvimento Web e Redes de Computadores.
+                    </p>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid lg:grid-cols-2 gap-8">
+
+                    <!-- PROJECT 1: PALWORLD GUIDE -->
+                    <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-cyan/50 transition-all group flex flex-col justify-between">
+                        <div>
+                            <!-- Card Header Image / Banner -->
+                            <div class="h-48 bg-gradient-to-r from-blue-900 via-indigo-950 to-slate-900 relative p-6 flex flex-col justify-between overflow-hidden">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#06b6d4_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                                
+                                <div class="flex justify-between items-start relative z-10">
+                                    <span class="px-3 py-1 rounded-full bg-brand-cyan/20 border border-brand-cyan/40 text-brand-cyan text-xs font-semibold backdrop-blur-md">
+                                        Desenvolvimento Web
+                                    </span>
+                                    <i class="fas fa-gamepad text-3xl text-brand-cyan/40 group-hover:text-brand-cyan transition-colors"></i>
+                                </div>
+
+                                <div class="relative z-10">
+                                    <h4 class="text-2xl font-bold text-white group-hover:text-brand-cyan transition-colors">Guia Inicial de Palworld</h4>
+                                    <p class="text-xs text-gray-300 font-mono mt-1">Desenvolvimento Web & Back-End Básico</p>
+                                </div>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="p-6 space-y-4">
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Um site web interativo estilo guia completo para iniciantes no jogo Palworld. Desenvolvido para ajudar novos jogadores a entenderem estratégias de captura, gerenciamento de bases e atributos de criaturas.
+                                </p>
+
+                                <!-- Tech Stack Badges -->
+                                <div class="flex flex-wrap gap-2 pt-2">
+                                    <span class="px-2.5 py-1 rounded-lg bg-gray-800 text-xs text-brand-cyan font-mono border border-gray-700">HTML5</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-gray-800 text-xs text-blue-400 font-mono border border-gray-700">CSS3</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-gray-800 text-xs text-purple-400 font-mono border border-gray-700">PHP</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-gray-800 text-xs text-yellow-400 font-mono border border-gray-700">JavaScript</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="p-6 pt-0">
+                            <button onclick="openModal('palworld')" class="w-full py-3 rounded-xl bg-gray-800 hover:bg-brand-cyan hover:text-slate-950 font-semibold text-sm transition-all border border-gray-700 flex items-center justify-center gap-2">
+                                <i class="fas fa-info-circle"></i> Ver Detalhes do Projeto
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 2: LOAN COMPANY (PACKET TRACER) -->
+                    <div class="glass-card rounded-2xl overflow-hidden border border-gray-800 hover:border-brand-purple/50 transition-all group flex flex-col justify-between">
+                        <div>
+                            <!-- Card Header Image / Banner -->
+                            <div class="h-48 bg-gradient-to-r from-purple-950 via-slate-900 to-slate-950 relative p-6 flex flex-col justify-between overflow-hidden">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#8b5cf6_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                                
+                                <div class="flex justify-between items-start relative z-10">
+                                    <span class="px-3 py-1 rounded-full bg-brand-purple/20 border border-brand-purple/40 text-brand-purple text-xs font-semibold backdrop-blur-md">
+                                        Redes & Infraestrutura
+                                    </span>
+                                    <i class="fas fa-network-wired text-3xl text-brand-purple/40 group-hover:text-brand-purple transition-colors"></i>
+                                </div>
+
+                                <div class="relative z-10">
+                                    <h4 class="text-2xl font-bold text-white group-hover:text-brand-purple transition-colors">Empresa de Empréstimos Simulada</h4>
+                                    <p class="text-xs text-gray-300 font-mono mt-1">Cisco Packet Tracer (pektrace)</p>
+                                </div>
+                            </div>
+
+                            <!-- Card Body -->
+                            <div class="p-6 space-y-4">
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Projeto de arquitetura de rede para uma instituição financeira de empréstimos. Envolveu a criação da topologia física e lógica, divisão de sub-redes (VLANs), servidores, roteamento e políticas de segurança.
+                                </p>
+
+                                <!-- Tech Stack Badges -->
+                                <div class="flex flex-wrap gap-2 pt-2">
+                                    <span class="px-2.5 py-1 rounded-lg bg-gray-800 text-xs text-brand-purple font-mono border border-gray-700">Packet Tracer</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-gray-800 text-xs text-emerald-400 font-mono border border-gray-700">Roteamento & VLANs</span>
+                                    <span class="px-2.5 py-1 rounded-lg bg-gray-800 text-xs text-pink-400 font-mono border border-gray-700">Segurança de Dados</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer -->
+                        <div class="p-6 pt-0">
+                            <button onclick="openModal('emprestimo')" class="w-full py-3 rounded-xl bg-gray-800 hover:bg-brand-purple hover:text-white font-semibold text-sm transition-all border border-gray-700 flex items-center justify-center gap-2">
+                                <i class="fas fa-info-circle"></i> Ver Detalhes do Projeto
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FUTURE ROADMAP SECTION -->
+        <section id="roadmap" class="py-20 bg-slate-900/50 border-t border-gray-800/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                    <h2 class="text-xs uppercase font-mono tracking-widest text-brand-pink font-bold">Plano de Carreira</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold">Trilha rumo à Inteligência Artificial</h3>
+                    <p class="text-gray-400 text-sm">Meu planejamento estruturado de aprendizado para transicionar da base tecnológica para o desenvolvimento de IA.</p>
+                </div>
+
+                <!-- Timeline Container -->
+                <div class="relative max-w-4xl mx-auto">
+                    <!-- Central Vertical Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-brand-cyan via-brand-purple to-brand-pink hidden sm:block"></div>
+
+                    <!-- Step 1 -->
+                    <div class="relative mb-12 sm:mb-16 flex flex-col sm:flex-row items-center">
+                        <div class="flex-1 w-full sm:pr-8 sm:text-right mb-4 sm:mb-0">
+                            <span class="text-xs font-mono text-brand-cyan font-bold">FASE 1 (ATUAL)</span>
+                            <h4 class="text-lg font-bold text-white">Fundamentos de TI & Web</h4>
+                            <p class="text-xs text-gray-400 mt-1">HTML5, CSS3, PHP, Noções de Redes & Lógica de Programação.</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-brand-cyan text-slate-950 flex items-center justify-center font-bold text-sm shadow-lg shadow-brand-cyan/30 z-10 my-2 sm:my-0">
+                            1
+                        </div>
+                        <div class="flex-1 w-full sm:pl-8">
+                            <div class="p-4 rounded-xl bg-gray-800/60 border border-gray-700/50 text-xs text-gray-300">
+                                Status: Concluindo Ensino Médio & Projetos Práticos Iniciais.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative mb-12 sm:mb-16 flex flex-col sm:flex-row items-center">
+                        <div class="flex-1 w-full sm:pr-8 sm:text-right mb-4 sm:mb-0 sm:order-1">
+                            <div class="p-4 rounded-xl bg-gray-800/60 border border-gray-700/50 text-xs text-gray-300">
+                                Objetivo: Dominar manipulação de dados e automação de scripts.
+                            </div>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-brand-purple text-white flex items-center justify-center font-bold text-sm shadow-lg shadow-brand-purple/30 z-10 my-2 sm:my-0 sm:order-2">
+                            2
+                        </div>
+                        <div class="flex-1 w-full sm:pl-8 sm:order-3">
+                            <span class="text-xs font-mono text-brand-purple font-bold">FASE 2 (PRÓXIMO PASSO)</span>
+                            <h4 class="text-lg font-bold text-white">Especialização em Python & Algoritmos</h4>
+                            <p class="text-xs text-gray-400 mt-1">Estrutura de dados, sintaxe avançada em Python, POO e Matemática discreta.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative mb-12 sm:mb-16 flex flex-col sm:flex-row items-center">
+                        <div class="flex-1 w-full sm:pr-8 sm:text-right mb-4 sm:mb-0">
+                            <span class="text-xs font-mono text-brand-pink font-bold">FASE 3 (FUTURO PRÓXIMO)</span>
+                            <h4 class="text-lg font-bold text-white">Ciência de Dados & Machine Learning</h4>
+                            <p class="text-xs text-gray-400 mt-1">Pandas, NumPy, Scikit-Learn e Modelos Preditivos.</p>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-brand-pink text-white flex items-center justify-center font-bold text-sm shadow-lg shadow-brand-pink/30 z-10 my-2 sm:my-0">
+                            3
+                        </div>
+                        <div class="flex-1 w-full sm:pl-8">
+                            <div class="p-4 rounded-xl bg-gray-800/60 border border-gray-700/50 text-xs text-gray-300">
+                                Aprendizado de Redes Neurais e Treinamento de Modelos.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col sm:flex-row items-center">
+                        <div class="flex-1 w-full sm:pr-8 sm:text-right mb-4 sm:mb-0 sm:order-1">
+                            <div class="p-4 rounded-xl bg-gray-800/60 border border-gray-700/50 text-xs text-gray-300">
+                                Meta Final: Atuar profissionalmente como Desenvolvedor/Engenheiro de IA.
+                            </div>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-brand-cyan to-brand-purple text-white flex items-center justify-center font-bold text-sm shadow-lg z-10 my-2 sm:my-0 sm:order-2">
+                            <i class="fas fa-star text-xs"></i>
+                        </div>
+                        <div class="flex-1 w-full sm:pl-8 sm:order-3">
+                            <span class="text-xs font-mono text-brand-cyan font-bold">FASE 4 (OBJETIVO PRINCIPAL)</span>
+                            <h4 class="text-lg font-bold text-white">Desenvolvedor de Inteligência Artificial</h4>
+                            <p class="text-xs text-gray-400 mt-1">Deep Learning, Processamento de Linguagem Natural (NLP) e LLMs.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-5 space-y-6">
+                        <h2 class="text-xs uppercase font-mono tracking-widest text-brand-cyan font-bold">Contato</h2>
+                        <h3 class="text-3xl sm:text-4xl font-extrabold">Vamos Conversar?</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Estou sempre aberto a trocar ideias sobre tecnologia, oportunidades de aprendizado e desenvolvimento de projetos.
+                        </p>
+
+                        <div class="space-y-4 pt-4">
+                            <div class="flex items-center gap-4 p-4 rounded-xl glass-card border border-gray-800">
+                                <div class="w-10 h-10 rounded-lg bg-brand-cyan/10 text-brand-cyan flex items-center justify-center">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">E-mail de Contato</p>
+                                    <p class="text-sm font-semibold text-gray-200">pedro.augusto@email.com</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-4 rounded-xl glass-card border border-gray-800">
+                                <div class="w-10 h-10 rounded-lg bg-brand-purple/10 text-brand-purple flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">Localização</p>
+                                    <p class="text-sm font-semibold text-gray-200">Brasil</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form -->
+                    <div class="lg:col-span-7">
+                        <div class="glass-card p-6 sm:p-8 rounded-2xl border border-gray-800">
+                            <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-300 mb-2">Seu Nome</label>
+                                        <input type="text" required placeholder="Ex: Maria Silva" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-gray-800 focus:border-brand-cyan focus:outline-none text-sm text-gray-200">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-300 mb-2">Seu E-mail</label>
+                                        <input type="email" required placeholder="Ex: maria@email.com" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-gray-800 focus:border-brand-cyan focus:outline-none text-sm text-gray-200">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 mb-2">Assunto</label>
+                                    <input type="text" required placeholder="Ex: Oportunidade / Dúvida sobre projeto" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-gray-800 focus:border-brand-cyan focus:outline-none text-sm text-gray-200">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 mb-2">Mensagem</label>
+                                    <textarea rows="4" required placeholder="Escreva sua mensagem aqui..." class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-gray-800 focus:border-brand-cyan focus:outline-none text-sm text-gray-200"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-cyan to-brand-purple hover:opacity-90 font-bold text-white transition-all flex items-center justify-center gap-2">
+                                    <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                                </button>
+                            </form>
+
+                            <!-- Alert Box for feedback -->
+                            <div id="formAlert" class="hidden mt-4 p-4 rounded-xl bg-brand-emerald/10 border border-brand-emerald/30 text-brand-emerald text-sm text-center">
+                                Mensagem enviada com sucesso! Obrigado pelo contato.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass-card border-t border-gray-800/80 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p class="text-xs text-gray-400 text-center sm:text-left">
+                &copy; 2026 <strong class="text-gray-200">Pedro Augusto</strong>. Desenvolvido para o portfólio no VS Code.
+            </p>
+            <div class="flex items-center space-x-4 text-sm text-gray-400">
+                <span class="text-xs font-mono text-brand-cyan">&lt;Foco em IA /&gt;</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL FOR PROJECT DETAILS -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="glass-card max-w-2xl w-full rounded-2xl border border-gray-700 overflow-hidden shadow-2xl relative animate-float">
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-gray-800 flex items-center justify-between">
+                <h3 id="modalTitle" class="text-xl font-bold text-white">Título do Projeto</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white p-2 rounded-lg">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div id="modalBody" class="p-6 space-y-4 text-sm text-gray-300 max-h-[70vh] overflow-y-auto">
+                <!-- Dynamic Content Loaded via JS -->
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-gray-800 bg-slate-900/50 flex justify-end">
+                <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-semibold">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT INTERACTION -->
+    <script>
+        // Data for Project Details Modal
+        const projectsData = {
+            palworld: {
+                title: "Guia Inicial de Palworld (Web)",
+                content: `
+                    <p class="text-gray-300">Este projeto foi criado com o objetivo de oferecer um guia intuitivo e completo para iniciantes do jogo <strong>Palworld</strong>.</p>
+                    
+                    <h5 class="font-bold text-brand-cyan mt-4">Funcionalidades Principais:</h5>
+                    <ul class="list-disc list-inside space-y-1 text-gray-400">
+                        <li>Página inicial com resumo de dicas de sobrevivência.</li>
+                        <li>Catálogo interativo de criaturas (Pals) e seus elementos.</li>
+                        <li>Integração simples com PHP para carregamento de dados dinâmicos.</li>
+                        <li>Layout totalmente responsivo estilizado com CSS customizado.</li>
+                    </ul>
+
+                    <h5 class="font-bold text-brand-purple mt-4">Aprendizados Adquiridos:</h5>
+                    <p class="text-gray-400">Aprofundamento na estruturação semântica em HTML5, manipulação de seletores e layout flexível em CSS3, além de integração básica com páginas dinâmicas em PHP.</p>
+                `
+            },
+            emprestimo: {
+                title: "Empresa de Empréstimos Simulada (Packet Tracer)",
+                content: `
+                    <p class="text-gray-300">Projeto desenvolvido no software <strong>Cisco Packet Tracer (pektrace)</strong> focado na infraestrutura de redes de uma empresa do ramo financeiro.</p>
+
+                    <h5 class="font-bold text-brand-purple mt-4">Arquitetura Implementada:</h5>
+                    <ul class="list-disc list-inside space-y-1 text-gray-400">
+                        <li>Divisão de setores em VLANs distintas (Financeiro, Atendimento, Servidores).</li>
+                        <li>Configuração de Roteamento entre VLANs (Router-on-a-Stick).</li>
+                        <li>Servidor DHCP para atribuição automática de IPs aos computadores.</li>
+                        <li>Aplicação de listas de controle de acesso (ACLs) para maior segurança dos dados de empréstimos.</li>
+                    </ul>
+
+                    <h5 class="font-bold text-brand-pink mt-4">Aprendizados Adquiridos:</h5>
+                    <p class="text-gray-400">Compreensão prática da camada de rede, endereçamento IP, segurança de dados corporativos e topologia de switches e roteadores Cisco.</p>
+                `
+            }
+        };
+
+        // Modal Logic
+        function openModal(projectKey) {
+            const modal = document.getElementById('projectModal');
+            const data = projectsData[projectKey];
+            if (data) {
+                document.getElementById('modalTitle').innerText = data.title;
+                document.getElementById('modalBody').innerHTML = data.content;
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Theme Toggle (Dark / Light Mode)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+
+        // Form Submit Simulation
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const alert = document.getElementById('formAlert');
+            alert.classList.remove('hidden');
+            document.getElementById('contactForm').reset();
+            setTimeout(() => {
+                alert.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
